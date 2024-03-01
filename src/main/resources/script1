@@ -8,3 +8,4 @@ FOURTH
 name
 2002-09-05T07:00Asia/Amman
 11
+execute_script src/main/resources/script2
