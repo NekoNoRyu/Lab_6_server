@@ -14,7 +14,9 @@ public class RemoveAnyByFOECommand extends Command {
         try {
             FormOfEducation formOfEducation = Parser.parseFormOfEducation(x);
             CustomHashMap<Long, StudyGroup> customHashMap = Document.getCustomHashMap();
-            customHashMap.entrySet().stream()
+            CustomHashMap<Long, StudyGroup> customHashMapCopy = new CustomHashMap<>();
+            customHashMapCopy.putAll(customHashMap);
+            customHashMapCopy.entrySet().stream()
                     .filter(el -> el.getValue().getFormOfEducation() == formOfEducation)
                     .forEach(el -> customHashMap.remove(el.getKey()));
             Document.setCustomHashMap(customHashMap);

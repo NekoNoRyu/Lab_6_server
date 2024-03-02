@@ -17,7 +17,9 @@ public class RemoveLowerCommand extends Command {
             try {
                 StudyGroup studyGroup = Parser.parseArrayToStudyGroup(elements);
                 CustomHashMap<Long, StudyGroup> customHashMap = Document.getCustomHashMap();
-                customHashMap.entrySet().stream()
+                CustomHashMap<Long, StudyGroup> customHashMapCopy = new CustomHashMap<>();
+                customHashMapCopy.putAll(customHashMap);
+                customHashMapCopy.entrySet().stream()
                         .filter(el -> el.getValue().compareTo(studyGroup) < 0)
                         .forEach(el -> customHashMap.remove(el.getKey()));
                 Document.setCustomHashMap(customHashMap);

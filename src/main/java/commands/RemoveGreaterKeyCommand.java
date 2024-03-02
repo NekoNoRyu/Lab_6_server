@@ -14,7 +14,9 @@ public class RemoveGreaterKeyCommand extends Command {
         try {
             CustomHashMap<Long, StudyGroup> customHashMap = Document.getCustomHashMap();
             Long key = Parser.parseKey(x);
-            customHashMap.entrySet().stream()
+            CustomHashMap<Long, StudyGroup> customHashMapCopy = new CustomHashMap<>();
+            customHashMapCopy.putAll(customHashMap);
+            customHashMapCopy.entrySet().stream()
                     .filter(el -> el.getKey() > key)
                     .forEach(el -> customHashMap.remove(el.getKey()));
             Document.setCustomHashMap(customHashMap);

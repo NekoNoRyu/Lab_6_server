@@ -12,7 +12,9 @@ public class InteractiveRemoveLowerCommand extends Command {
     @Override
     public void execute(String x) {
         CustomHashMap<Long, StudyGroup> customHashMap = Document.getCustomHashMap();
-        customHashMap.entrySet().stream()
+        CustomHashMap<Long, StudyGroup> customHashMapCopy = new CustomHashMap<>();
+        customHashMapCopy.putAll(customHashMap);
+        customHashMapCopy.entrySet().stream()
                 .filter(el -> el.getValue().compareTo(this.getElement()) < 0)
                 .forEach(el -> customHashMap.remove(el.getKey()));
         Document.setCustomHashMap(customHashMap);
